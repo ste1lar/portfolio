@@ -2,12 +2,13 @@
 
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type NeonButtonProps = {
+type Props = {
   children: ReactNode;
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function NeonButton({ children, className = '', ...props }: NeonButtonProps) {
+// Client Component: accepts function props (e.g. onClick)
+const NeonButton = ({ children, className = '', ...props }: Props) => {
   return (
     <button
       {...props}
@@ -38,4 +39,6 @@ export default function NeonButton({ children, className = '', ...props }: NeonB
       </span>
     </button>
   );
-}
+};
+
+export default NeonButton;

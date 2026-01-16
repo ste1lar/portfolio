@@ -1,25 +1,25 @@
-'use client';
+import { getTranslations } from 'next-intl/server';
 
-import { useTranslations } from 'next-intl';
+type ExperienceItem = {
+  year: string;
+  title: string;
+  company: string;
+  type: string;
+  description: string;
+};
 
-const ExperienceSec = () => {
-  const t = useTranslations('home.experiences');
-  const experiences = t.raw('items') as {
-    year: string;
-    title: string;
-    company: string;
-    type: string;
-    description: string;
-  }[];
+export default async function Experience() {
+  const t = await getTranslations('home.experiences');
+  const experiences = t.raw('items') as ExperienceItem[];
 
   return (
-    <section>
+    <section aria-labelledby="experience-title">
       <div className="py-16 md:py-32">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-            <h2>{t('title')}</h2>
+          <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
+            <h2 id="experience-title">{t('title')}</h2>
             <p className="text-xl text-black">{t('sectionIndex')}</p>
-          </div>
+          </header>
 
           <div className="space-y-7 md:space-y-12">
             {experiences.map((exp, index) => {
@@ -38,13 +38,17 @@ const ExperienceSec = () => {
                   <div className="relative">
                     {index < experiences.length && (
                       <div
+                        aria-hidden="true"
                         className={`absolute left-0 top-3 w-px ${
                           index < experiences.length - 1 ? 'h-40' : 'h-30'
                         } bg-softGray`}
                       />
                     )}
 
-                    <div className="no-print absolute left-0 top-0 transform -translate-x-1/2">
+                    <div
+                      aria-hidden="true"
+                      className="no-print absolute left-0 top-0 transform -translate-x-1/2"
+                    >
                       <div
                         className={`no-print w-3.5 h-3.5 rounded-full border-1 bg-white flex items-center justify-center ${
                           isLatest ? 'border-black' : 'border-black'
@@ -73,6 +77,4 @@ const ExperienceSec = () => {
       </div>
     </section>
   );
-};
-
-export default ExperienceSec;
+}

@@ -5,8 +5,9 @@ import { notFound } from 'next/navigation';
 import { Noto_Sans_JP, Noto_Sans_KR, Outfit } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+import Footer from '@/features/layout/footer';
+import Header from '@/features/layout/header';
+import { setRequestLocale } from 'next-intl/server';
 
 const locales = ['ko', 'ja'] as const;
 
@@ -68,6 +69,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!locales.includes(locale as (typeof locales)[number])) {
     notFound();
   }
+
+  setRequestLocale(locale);
 
   const messages = (await import(`../../../messages/${locale}.json`)).default as Record<
     string,

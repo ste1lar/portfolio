@@ -1,10 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
-import { getImgPath } from '@/utils/image';
+import { getImgPath } from '@/shared/utils/image';
 
-export function LinkPill({
+export default function LinkPill({
   label,
   href,
   icon,

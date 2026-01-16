@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getImgPath } from '@/utils/image';
+import { getImgPath } from '@/shared/utils/image';
 
-type LogoProps = {
+type Props = {
   variant?: 'header' | 'footer';
   className?: string;
 };
 
-const Logo = ({ variant = 'header', className = '' }: LogoProps) => {
+export default function Logo({ variant = 'header', className = '' }: Props) {
   const sizeClass =
     variant === 'header'
       ? 'w-24 sm:w-28 md:w-32' // header
@@ -25,6 +25,4 @@ const Logo = ({ variant = 'header', className = '' }: LogoProps) => {
       />
     </Link>
   );
-};
-
-export default Logo;
+}

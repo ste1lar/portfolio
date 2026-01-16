@@ -1,7 +1,6 @@
-'use client';
-import Logo from '../logo';
+import Logo from '../../../shared/ui/logo';
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="bg-white font-outfit border-t border-t-softGray">
       <div className="container px-4">
@@ -35,6 +34,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

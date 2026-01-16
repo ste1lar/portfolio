@@ -2,12 +2,13 @@
 
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type SimpleButtonProps = {
+type Props = {
   children: ReactNode;
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function SimpleButton({ children, className = '', ...props }: SimpleButtonProps) {
+// Client Component: accepts function props (e.g. onClick)
+const SimpleButton = ({ children, className = '', ...props }: Props) => {
   return (
     <button
       {...props}
@@ -24,4 +25,6 @@ export default function SimpleButton({ children, className = '', ...props }: Sim
       {children}
     </button>
   );
-}
+};
+
+export default SimpleButton;

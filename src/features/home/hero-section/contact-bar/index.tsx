@@ -1,18 +1,33 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
-import { getImgPath } from '@/utils/image';
+import { getTranslations } from 'next-intl/server';
+import { getImgPath } from '@/shared/utils/image';
 import Image from 'next/image';
+import EmailLink from './EmailLink.client';
 
-const ContactBar = () => {
-  const t = useTranslations('home.contactBar');
+type ContactItem = {
+  type: 'email' | 'phone' | 'location';
+  label: string;
+  icon: string;
+  link: string;
+};
 
-  // 배열/객체 가져올 때 raw() 사용
-  const contactItems = t.raw('contactItems');
-  const socialItems = t.raw('socialItems');
+type SocialItem = {
+  platform: 'github' | 'linkedin' | string; // 나중에 늘릴 수 있으니 일단 string 허용
+  icon: string;
+  link: string;
+};
+
+export default async function ContactBar() {
+  const t = await getTranslations('home.contactBar');
+
+  const contactItems = t.raw('contactItems') as ContactItem[];
+  const socialItems = t.raw('socialItems') as SocialItem[];
 
   return (
-    <section>
+    <section aria-labelledby="contact-bar-title">
+      <h2 id="contact-bar-title" className="sr-only">
+        Contact
+      </h2>
+
       <div className="border-t border-softGray">
         <div className="container">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 md:py-7">
@@ -28,21 +43,14 @@ const ContactBar = () => {
             "
             >
               {contactItems.map((value: any, index: number) => {
-                const handleClick = (e: any) => {
-                  if (value.type === 'email') {
-                    e.preventDefault();
-                    window.open(
-                      `https://mail.google.com/mail/?view=cm&fs=1&to=${value.label}`,
-                      '_blank'
-                    );
-                  }
-                };
+                if (value.type === 'email') {
+                  return <EmailLink key={index} value={value} />;
+                }
 
                 return (
                   <a
                     key={index}
                     href={value.link}
-                    onClick={handleClick}
                     target={value.type === 'location' ? '_blank' : undefined}
                     rel={value.type === 'location' ? 'noopener noreferrer' : undefined}
                     className="flex items-center gap-2 lg:gap-4 text-sm md:text-base hover:opacity-50 transition-opacity duration-200"
@@ -54,7 +62,6 @@ const ContactBar = () => {
                       height={24}
                       className="min-w-[24px] min-h-[24px]"
                     />
-
                     <h6 className="text-sm md:text-base xl:text-xl">{value.label}</h6>
                   </a>
                 );
@@ -68,6 +75,7 @@ const ContactBar = () => {
                   key={index}
                   href={value.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:opacity-50 transition-opacity duration-200"
                 >
                   <Image src={getImgPath(value.icon)} alt={value.platform} width={30} height={30} />
@@ -79,6 +87,4 @@ const ContactBar = () => {
       </div>
     </section>
   );
-};
-
-export default ContactBar;
+}

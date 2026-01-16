@@ -1,9 +1,9 @@
-import HeroSection from '@/components/home/hero-section';
-import ContactBar from '@/components/home/hero-section/contact-bar';
-import AboutMe from '@/components/home/about-me';
-import ExperienceSec from '@/components/home/experience-sec';
-import EducationSkills from '@/components/home/education-skills';
-import LatestWork from '@/components/home/latest-work';
+import HeroSection from '@/features/home/hero-section';
+import ContactBar from '@/features/home/hero-section/contact-bar';
+import AboutMe from '@/features/home/about-me';
+import EducationSkills from '@/features/home/education-skills';
+import LatestWork from '@/features/home/latest-work';
+import Experience from '@/features/home/experience';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <HeroSection />
       <ContactBar />
       <AboutMe />
-      <ExperienceSec />
+      <Experience />
       <EducationSkills />
       <LatestWork />
     </main>

@@ -1,30 +1,30 @@
-'use client';
-
-import { useTranslations, useLocale } from 'next-intl';
-import { getImgPath } from '@/utils/image';
+import { getTranslations, getLocale } from 'next-intl/server';
+import { getImgPath } from '@/shared/utils/image';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const LatestWork = () => {
-  const t = useTranslations('home.latestWork');
-  const locale = useLocale() as 'ko' | 'ja';
+type WorkItem = {
+  image: string;
+  title: string;
+  client: string;
+  slug: string;
+};
 
-  const workData = t.raw('works') as {
-    image: string;
-    title: string;
-    client: string;
-    slug: string; // "sabi-shop", "sweetii"
-  }[];
+export default async function LatestWork() {
+  const t = await getTranslations('home.latestWork');
+  const locale = (await getLocale()) as 'ko' | 'ja';
+
+  const workData = t.raw('works') as WorkItem[];
 
   return (
-    <section>
+    <section aria-labelledby="latest-work-title">
       <div className="bg-softGray">
         <div className="container">
           <div className="py-16 xl:py-32 ">
-            <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-              <h2>{t('title')}</h2>
+            <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
+              <h2 id="latest-work-title">{t('title')}</h2>
               <p className="text-xl text-black">{t('sectionIndex')}</p>
-            </div>
+            </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
               {workData?.map((value, index) => {
@@ -47,6 +47,7 @@ const LatestWork = () => {
 
                       {/* 카드 hover 시 나오는 오버레이 */}
                       <span
+                        aria-hidden="true"
                         className="
                           pointer-events-none
                           absolute inset-0 
@@ -91,6 +92,4 @@ const LatestWork = () => {
       </div>
     </section>
   );
-};
-
-export default LatestWork;
+}
