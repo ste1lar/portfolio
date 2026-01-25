@@ -1,5 +1,5 @@
-import Logo from '../../../shared/ui/logo';
-import LocaleSwitcher from '../../../shared/ui/LocaleSwitcher.client';
+import Logo from '@/shared/ui/logo';
+import LocaleSwitcher from '@/shared/ui/LocaleSwitcher.client';
 import DownloadPdfButton from './DownloadPdfButton.client';
 import MobileMenu from './MobileMenu.client';
 

@@ -31,7 +31,7 @@ export default function ProjectDetail({ sectionTitle, sectionIndex, project }: P
       <section aria-labelledby="project-detail-title">
         <div className="container">
           <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-            <h2>{sectionTitle}</h2>
+            <h2 id="project-detail-title">{sectionTitle}</h2>
             <p className="text-xl text-black">{sectionIndex}</p>
           </div>
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import LocaleSwitcher from '../../../shared/ui/LocaleSwitcher.client';
+import LocaleSwitcher from '@/shared/ui/LocaleSwitcher.client';
 
 const MobileMenu = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
