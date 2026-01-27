@@ -1,23 +1,25 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { getImgPath } from '@/shared/utils/image';
+import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
-  variant?: 'header' | 'footer';
+  variant?: "header" | "footer";
   className?: string;
 };
 
-export default function Logo({ variant = 'header', className = '' }: Props) {
+export default function Logo({ variant = "header", className = "" }: Props) {
   const sizeClass =
-    variant === 'header'
-      ? 'w-24 sm:w-28 md:w-32' // header
-      : 'w-20 sm:w-22 md:w-24'; // footer
+    variant === "header"
+      ? "w-24 sm:w-28 md:w-32" // header
+      : "w-20 sm:w-22 md:w-24"; // footer
 
   return (
-    <Link href="/" className={`inline-flex items-center ${sizeClass} ${className}`}>
+    <Link
+      href="/"
+      className={`inline-flex items-center ${sizeClass} ${className}`}
+    >
       <Image
-        src={getImgPath('/images/logo/logo.png')}
-        alt="mesel7 logo"
+        src="/images/logo/logo.png"
+        alt="logo"
         width={512}
         height={160}
         className="w-full h-auto"

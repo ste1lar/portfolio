@@ -1,6 +1,5 @@
-import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
-import { getImgPath } from '@/shared/utils/image';
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
 export default function LinkPill({
   label,
@@ -9,11 +8,16 @@ export default function LinkPill({
 }: {
   label: string;
   href: string;
-  icon?: 'external' | 'github';
+  icon?: "external" | "github";
 }) {
   const Icon =
-    icon === 'github' ? (
-      <Image src={getImgPath('/images/icon/github-icon.svg')} alt="GitHub" width={16} height={16} />
+    icon === "github" ? (
+      <Image
+        src="/images/icon/github-icon.svg"
+        alt="GitHub"
+        width={16}
+        height={16}
+      />
     ) : (
       <ExternalLink className="w-4 h-4" />
     );

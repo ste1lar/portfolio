@@ -1,9 +1,8 @@
-import { getImgPath } from '@/shared/utils/image';
-import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 export default async function HeroSection() {
-  const t = await getTranslations('home.hero');
+  const t = await getTranslations("home.hero");
 
   return (
     <section
@@ -26,24 +25,26 @@ export default async function HeroSection() {
           <div className="flex flex-col gap-4 md:gap-7">
             <div>
               <div className="flex items-center gap-8">
-                <h1 id="hero-title">{t('line1')}</h1>
+                <h1 id="hero-title">{t("line1")}</h1>
                 <div className="wave" aria-hidden="true">
                   <Image
-                    src={getImgPath('/images/home/banner/wave-icon.svg')}
+                    src="/images/home/banner/wave-icon.svg"
                     alt="wave-icon"
                     width={62}
                     height={62}
                   />
                 </div>
               </div>
-              <h1>{t('role')}</h1>
+              <h1>{t("role")}</h1>
             </div>
-            <p className="font-normal leading-7 md:leading-8">{t('description')}</p>
+            <p className="font-normal leading-7 md:leading-8">
+              {t("description")}
+            </p>
           </div>
 
           {/* 오른쪽: 사진 */}
           <Image
-            src={getImgPath('/images/home/banner/banner-img.jpg')}
+            src="/images/home/banner/banner-img.jpg"
             alt="banner-img"
             width={320}
             height={400}

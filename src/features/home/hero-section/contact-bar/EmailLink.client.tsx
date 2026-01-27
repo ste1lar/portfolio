@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { getImgPath } from '@/shared/utils/image';
+import Image from "next/image";
 
 type Props = {
   value: {
@@ -15,7 +14,10 @@ type Props = {
 const EmailLink = ({ value }: Props) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${value.label}`, '_blank');
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${value.label}`,
+      "_blank",
+    );
   };
 
   return (
@@ -25,7 +27,7 @@ const EmailLink = ({ value }: Props) => {
       className="flex items-center gap-2 lg:gap-4 text-sm md:text-base hover:opacity-50 transition-opacity duration-200"
     >
       <Image
-        src={getImgPath(value.icon)}
+        src={value.icon}
         alt={value.type}
         width={24}
         height={24}

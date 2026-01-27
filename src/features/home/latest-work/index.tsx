@@ -1,7 +1,6 @@
-import { getTranslations, getLocale } from 'next-intl/server';
-import { getImgPath } from '@/shared/utils/image';
-import Image from 'next/image';
-import Link from 'next/link';
+import { getTranslations, getLocale } from "next-intl/server";
+import Image from "next/image";
+import Link from "next/link";
 
 type WorkItem = {
   image: string;
@@ -11,10 +10,10 @@ type WorkItem = {
 };
 
 export default async function LatestWork() {
-  const t = await getTranslations('home.latestWork');
-  const locale = (await getLocale()) as 'ko' | 'ja';
+  const t = await getTranslations("home.latestWork");
+  const locale = (await getLocale()) as "ko" | "ja";
 
-  const workData = t.raw('works') as WorkItem[];
+  const workData = t.raw("works") as WorkItem[];
 
   return (
     <section aria-labelledby="latest-work-title">
@@ -22,8 +21,8 @@ export default async function LatestWork() {
         <div className="container">
           <div className="py-16 xl:py-32 ">
             <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-              <h2 id="latest-work-title">{t('title')}</h2>
-              <p className="text-xl text-black">{t('sectionIndex')}</p>
+              <h2 id="latest-work-title">{t("title")}</h2>
+              <p className="text-xl text-black">{t("sectionIndex")}</p>
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
@@ -38,7 +37,7 @@ export default async function LatestWork() {
                   >
                     <div className="relative">
                       <Image
-                        src={getImgPath(value.image)}
+                        src={value.image}
                         alt={value.title}
                         width={600}
                         height={400}
@@ -67,7 +66,13 @@ export default async function LatestWork() {
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <rect x="0.333374" width="64" height="64" rx="32" fill="black" />
+                          <rect
+                            x="0.333374"
+                            width="64"
+                            height="64"
+                            rx="32"
+                            fill="black"
+                          />
                           <path
                             d="M25.6667 25.3333H39M39 25.3333V38.6666M39 25.3333L25.6667 38.6666"
                             stroke="#FFFF"

@@ -1,6 +1,5 @@
-import { getTranslations } from 'next-intl/server';
-import { getImgPath } from '@/shared/utils/image';
-import Image from 'next/image';
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 type EducationItem = {
   title: string;
@@ -14,10 +13,10 @@ type SkillItem = {
 };
 
 export default async function EducationSkills() {
-  const t = await getTranslations('home.educationSkills');
+  const t = await getTranslations("home.educationSkills");
 
-  const education = t.raw('education') as EducationItem[];
-  const skills = t.raw('skills') as SkillItem[];
+  const education = t.raw("education") as EducationItem[];
+  const skills = t.raw("skills") as SkillItem[];
 
   const mainSkills = skills.slice(0, 6);
   const extraSkills = skills.slice(6);
@@ -28,8 +27,8 @@ export default async function EducationSkills() {
         <div className="container relative z-10">
           <div className="relative z-10 py-16 md:py-32">
             <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 xl:mb-16">
-              <h2 id="education-skills-title">{t('title')}</h2>
-              <p className="text-xl text-black">{t('sectionIndex')}</p>
+              <h2 id="education-skills-title">{t("title")}</h2>
+              <p className="text-xl text-black">{t("sectionIndex")}</p>
             </header>
 
             {/* 상단: Education, 메인 스킬 6개 */}
@@ -64,7 +63,7 @@ export default async function EducationSkills() {
                     >
                       <div className="flex flex-col items-center gap-5">
                         <Image
-                          src={getImgPath(value.icon)}
+                          src={value.icon}
                           alt={value.name}
                           width={70}
                           height={70}
@@ -82,14 +81,17 @@ export default async function EducationSkills() {
                           const active = i < value.rating;
 
                           return (
-                            <span key={i} className="relative inline-flex h-[9px] w-[9px]">
+                            <span
+                              key={i}
+                              className="relative inline-flex h-[9px] w-[9px]"
+                            >
                               {active && (
                                 <span className="neon-dot-highlight absolute inset-0 z-0 rounded-full" />
                               )}
                               <span
                                 className={`
                                   relative z-10 h-full w-full rounded-full
-                                  ${active ? 'bg-white' : 'bg-gray-300'}
+                                  ${active ? "bg-white" : "bg-gray-300"}
                                 `}
                               />
                             </span>
@@ -114,7 +116,7 @@ export default async function EducationSkills() {
                       >
                         <div className="flex flex-col items-center gap-5">
                           <Image
-                            src={getImgPath(value.icon)}
+                            src={value.icon}
                             alt={value.name}
                             width={70}
                             height={70}
@@ -132,14 +134,17 @@ export default async function EducationSkills() {
                             const active = i < value.rating;
 
                             return (
-                              <span key={i} className="relative inline-flex h-[9px] w-[9px]">
+                              <span
+                                key={i}
+                                className="relative inline-flex h-[9px] w-[9px]"
+                              >
                                 {active && (
                                   <span className="neon-dot-highlight absolute inset-0 z-0 rounded-full" />
                                 )}
                                 <span
                                   className={`
                                     relative z-10 h-full w-full rounded-full
-                                    ${active ? 'bg-white' : 'bg-gray-300'}
+                                    ${active ? "bg-white" : "bg-gray-300"}
                                   `}
                                 />
                               </span>

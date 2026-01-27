@@ -30,7 +30,7 @@
         {
           "platform": "github",
           "icon": "/images/icon/github-icon.svg",
-          "link": "https://github.com/mesel7"
+          "link": "https://github.com/ste1lar"
         },
         {
           "platform": "linkedin",
@@ -205,7 +205,7 @@
         },
         {
           "image": "/images/work/portfolio.jpg",
-          "title": "mesel7 Dev Portfolio",
+          "title": "Portfolio",
           "client": "Personal Project / Frontend",
           "slug": "portfolio"
         }
@@ -226,7 +226,7 @@
       "tech": "Tailwind CSS, TypeScript, React, Redux Toolkit, Next.js, Firebase, Vercel",
       "links": {
         "project": "https://sabi-shop.vercel.app",
-        "github": "https://github.com/mesel7/sabi-shop"
+        "github": "https://github.com/ste1lar/sabi-shop"
       },
       "note": "本プロジェクトの主要機能・構造・スクリーンショット等はGitHubにてご確認いただけます。また、プロジェクトリンクから実際のサービスを体験することも可能です。\n本ページでは、開発の背景、課題解決の過程、学んだ点を中心にまとめています。",
       "insight": {
@@ -237,14 +237,14 @@
     },
     "portfolio": {
       "name": "portfolio",
-      "title": "mesel7 Dev Portfolio",
+      "title": "Portfolio",
       "period": "2024.07 ~ 2025.11",
       "type": "Personal Project / Fullstack",
       "description": "以前の React SPA・Firebase ベースで構築していた個人ポートフォリオを、Next.js・TypeScript・Tailwind CSS を用いて全面的にリニューアルしたプロジェクトです。\n全体の構造を見直し、UI/UX を再整理することで、プロジェクト・経験・技術スタックをより直感的かつ一貫性のある形で伝えられるように改善しました。",
       "tech": "Next.js, React, TypeScript, Tailwind CSS, Vercel",
       "links": {
-        "project": "https://mesel7.dev/",
-        "github": "https://github.com/mesel7/portfolio"
+        "project": "https://ste1lar.dev/",
+        "github": "https://github.com/ste1lar/portfolio"
       },
       "note": "本プロジェクトの主要機能・構造・スクリーンショット等はGitHubにてご確認いただけます。また、プロジェクトリンクから実際のサービスを体験することも可能です。\n本ページでは、開発の背景、課題解決の過程、学んだ点を中心にまとめています。",
       "insight": {
@@ -299,7 +299,7 @@
       "tech": "HTML5, CSS3, JavaScript, React, Firebase",
       "links": {
         "project": "https://seremeety-kr.web.app/",
-        "github": "https://github.com/mesel7/seremeety-web"
+        "github": "https://github.com/ste1lar/seremeety-web"
       },
       "note": "本プロジェクトの主要機能・構造・スクリーンショット等はGitHubにてご確認いただけます。また、プロジェクトリンクから実際のサービスを体験することも可能です。\n本ページでは、開発の背景、課題解決の過程、学んだ点を中心にまとめています。",
       "insight": {
@@ -317,7 +317,7 @@
       "tech": "HTML5, CSS3, JavaScript, Firebase",
       "links": {
         "project": "",
-        "github": "https://github.com/mesel7/sweetii-docs"
+        "github": "https://github.com/ste1lar/sweetii-docs"
       },
       "note": "本プロジェクトは現在、デプロイ環境が終了しておりサービスをご利用いただけません。また、会社の内部方針によりソースコードは公開できませんが、GitHubに別途まとめた紹介ページにて、主要機能・構造・スクリーンショットなどをご確認いただけます。\n本ページでは、開発の背景、課題解決の過程、学んだ点を中心にまとめています。",
       "insight": {

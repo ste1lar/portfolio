@@ -1,26 +1,25 @@
-import { getTranslations } from 'next-intl/server';
-import { getImgPath } from '@/shared/utils/image';
-import Image from 'next/image';
-import EmailLink from './EmailLink.client';
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
+import EmailLink from "./EmailLink.client";
 
 type ContactItem = {
-  type: 'email' | 'phone' | 'location';
+  type: "email" | "phone" | "location";
   label: string;
   icon: string;
   link: string;
 };
 
 type SocialItem = {
-  platform: 'github' | 'linkedin' | string; // 나중에 늘릴 수 있으니 일단 string 허용
+  platform: "github" | "linkedin" | string; // 나중에 늘릴 수 있으니 일단 string 허용
   icon: string;
   link: string;
 };
 
 export default async function ContactBar() {
-  const t = await getTranslations('home.contactBar');
+  const t = await getTranslations("home.contactBar");
 
-  const contactItems = t.raw('contactItems') as ContactItem[];
-  const socialItems = t.raw('socialItems') as SocialItem[];
+  const contactItems = t.raw("contactItems") as ContactItem[];
+  const socialItems = t.raw("socialItems") as SocialItem[];
 
   return (
     <section aria-labelledby="contact-bar-title">
@@ -43,7 +42,7 @@ export default async function ContactBar() {
             "
             >
               {contactItems.map((value: any, index: number) => {
-                if (value.type === 'email') {
+                if (value.type === "email") {
                   return <EmailLink key={index} value={value} />;
                 }
 
@@ -51,18 +50,24 @@ export default async function ContactBar() {
                   <a
                     key={index}
                     href={value.link}
-                    target={value.type === 'location' ? '_blank' : undefined}
-                    rel={value.type === 'location' ? 'noopener noreferrer' : undefined}
+                    target={value.type === "location" ? "_blank" : undefined}
+                    rel={
+                      value.type === "location"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="flex items-center gap-2 lg:gap-4 text-sm md:text-base hover:opacity-50 transition-opacity duration-200"
                   >
                     <Image
-                      src={getImgPath(value.icon)}
+                      src={value.icon}
                       alt={value.type}
                       width={24}
                       height={24}
                       className="min-w-[24px] min-h-[24px]"
                     />
-                    <h6 className="text-sm md:text-base xl:text-xl">{value.label}</h6>
+                    <h6 className="text-sm md:text-base xl:text-xl">
+                      {value.label}
+                    </h6>
                   </a>
                 );
               })}
@@ -78,7 +83,12 @@ export default async function ContactBar() {
                   rel="noopener noreferrer"
                   className="hover:opacity-50 transition-opacity duration-200"
                 >
-                  <Image src={getImgPath(value.icon)} alt={value.platform} width={30} height={30} />
+                  <Image
+                    src={value.icon}
+                    alt={value.platform}
+                    width={30}
+                    height={30}
+                  />
                 </a>
               ))}
             </div>

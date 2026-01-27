@@ -1,4 +1,4 @@
-import Logo from '@/shared/ui/logo';
+import Logo from "@/shared/ui/logo";
 
 export default function Footer() {
   return (
@@ -27,7 +27,9 @@ export default function Footer() {
             text-sm text-gray-500
           "
           >
-            <div>© {new Date().getFullYear()} mesel7. All Rights Reserved.</div>
+            <div>
+              © {new Date().getFullYear()} ste1lar. All Rights Reserved.
+            </div>
             <div>React · Next.js · Tailwind CSS</div>
           </div>
         </div>

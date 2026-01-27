@@ -1,59 +1,61 @@
-import '../globals.css';
-import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
+import "../globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
 
-import { Noto_Sans_JP, Noto_Sans_KR, Outfit } from 'next/font/google';
-import type { Metadata, Viewport } from 'next';
+import { Noto_Sans_JP, Noto_Sans_KR, Outfit } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 
-import Footer from '@/features/layout/footer';
-import Header from '@/features/layout/header';
-import { setRequestLocale } from 'next-intl/server';
+import Footer from "@/features/layout/footer";
+import Header from "@/features/layout/header";
+import { setRequestLocale } from "next-intl/server";
 
-const locales = ['ko', 'ja'] as const;
+const locales = ["ko", "ja"] as const;
 
 const notoJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700', '900'],
-  variable: '--font-noto-jp',
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-noto-jp",
 });
 
 const notoKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700', '900'],
-  variable: '--font-noto-kr',
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-noto-kr",
 });
 
 const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
+  subsets: ["latin"],
+  variable: "--font-outfit",
 });
 
 // 공통 메타데이터 (언어 상관 없이 공용)
 export const metadata: Metadata = {
-  title: 'mesel7 Dev Portfolio',
-  description: 'mesel7 Dev Portfolio',
+  title: {
+    default: "ste1lar",
+    template: "%s | ste1lar",
+  },
+  description: "Frontend developer portfolio built with Next.js",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: 'mesel7 Dev Portfolio',
-    description: 'mesel7 Dev Portfolio',
-    siteName: 'mesel7 Dev Portfolio',
+    title: "ste1lar",
+    siteName: "ste1lar",
     images: [
       {
-        url: '/og-image.png',
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: 'mesel7 Dev Portfolio',
+        alt: "portfolio",
       },
     ],
-    type: 'website',
+    type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: "#ffffff",
 };
 
 type Props = {
@@ -72,10 +74,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
-  const messages = (await import(`../../../messages/${locale}.json`)).default as Record<
-    string,
-    any
-  >;
+  const messages = (await import(`../../../messages/${locale}.json`))
+    .default as Record<string, any>;
 
   return (
     <html
