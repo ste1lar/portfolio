@@ -1,38 +1,30 @@
-import { getTranslations, getLocale } from "next-intl/server";
-import Image from "next/image";
-import Link from "next/link";
-
-type WorkItem = {
-  image: string;
-  title: string;
-  client: string;
-  slug: string;
-};
+import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import { Link } from '@/i18n/navigation';
+import type { WorkItem } from '@/shared/types/home';
+import SectionHeader from '@/shared/ui/SectionHeader';
 
 export default async function LatestWork() {
-  const t = await getTranslations("home.latestWork");
-  const locale = (await getLocale()) as "ko" | "ja";
-
-  const workData = t.raw("works") as WorkItem[];
+  const t = await getTranslations('home.latestWork');
+  const workData = t.raw('works') as WorkItem[];
 
   return (
     <section aria-labelledby="latest-work-title">
       <div className="bg-softGray">
         <div className="container">
-          <div className="py-16 xl:py-32 ">
-            <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-              <h2 id="latest-work-title">{t("title")}</h2>
-              <p className="text-xl text-black">{t("sectionIndex")}</p>
-            </header>
+          <div className="py-16 xl:py-32">
+            <SectionHeader
+              id="latest-work-title"
+              title={t('title')}
+              index={t('sectionIndex')}
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
-              {workData?.map((value, index) => {
-                const href = `/${locale}/projects/${value.slug}`;
-
+              {workData.map((value) => {
                 return (
                   <Link
-                    key={index}
-                    href={href}
+                    key={value.slug}
+                    href={`/projects/${value.slug}`}
                     className="group flex flex-col gap-3 xl:gap-6 cursor-pointer"
                   >
                     <div className="relative">
@@ -44,15 +36,14 @@ export default async function LatestWork() {
                         className="rounded-lg w-full h-full object-cover"
                       />
 
-                      {/* 카드 hover 시 나오는 오버레이 */}
                       <span
                         aria-hidden="true"
                         className="
                           pointer-events-none
-                          absolute inset-0 
-                          rounded-lg 
-                          bg-black/15 
-                          backdrop-blur-xs 
+                          absolute inset-0
+                          rounded-lg
+                          bg-black/15
+                          backdrop-blur-xs
                           flex items-center justify-center
                           opacity-0
                           transition-opacity duration-200

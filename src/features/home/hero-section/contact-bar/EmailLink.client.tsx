@@ -1,22 +1,18 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
+import type { ContactItem } from '@/shared/types/home';
 
 type Props = {
-  value: {
-    type: string; // 'email'
-    label: string;
-    link: string;
-    icon: string;
-  };
+  value: ContactItem;
 };
 
 const EmailLink = ({ value }: Props) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=${value.label}`,
-      "_blank",
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(value.label)}`,
+      '_blank',
     );
   };
 

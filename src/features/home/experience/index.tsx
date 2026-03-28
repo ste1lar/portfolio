@@ -1,12 +1,7 @@
 import { getTranslations } from 'next-intl/server';
-
-type ExperienceItem = {
-  year: string;
-  title: string;
-  company: string;
-  type: string;
-  description: string;
-};
+import type { ExperienceItem } from '@/shared/types/home';
+import SectionHeader from '@/shared/ui/SectionHeader';
+import TimelineDot from '@/shared/ui/TimelineDot';
 
 export default async function Experience() {
   const t = await getTranslations('home.experiences');
@@ -16,10 +11,7 @@ export default async function Experience() {
     <section aria-labelledby="experience-title">
       <div className="py-16 md:py-32">
         <div className="container mx-auto px-4">
-          <header className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-            <h2 id="experience-title">{t('title')}</h2>
-            <p className="text-xl text-black">{t('sectionIndex')}</p>
-          </header>
+          <SectionHeader id="experience-title" title={t('title')} index={t('sectionIndex')} />
 
           <div className="space-y-7 md:space-y-12">
             {experiences.map((exp, index) => {
@@ -49,13 +41,7 @@ export default async function Experience() {
                       aria-hidden="true"
                       className="no-print absolute left-0 top-0 transform -translate-x-1/2"
                     >
-                      <div
-                        className={`no-print w-3.5 h-3.5 rounded-full border-1 bg-white flex items-center justify-center ${
-                          isLatest ? 'border-black' : 'border-black'
-                        }`}
-                      >
-                        {isLatest && <div className="w-1.5 h-1.5 rounded-full bg-black" />}
-                      </div>
+                      <TimelineDot filled={isLatest} />
                     </div>
 
                     <div className="pl-4 lg:pl-7">

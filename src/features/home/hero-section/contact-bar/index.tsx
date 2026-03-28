@@ -1,25 +1,13 @@
-import { getTranslations } from "next-intl/server";
-import Image from "next/image";
-import EmailLink from "./EmailLink.client";
-
-type ContactItem = {
-  type: "email" | "phone" | "location";
-  label: string;
-  icon: string;
-  link: string;
-};
-
-type SocialItem = {
-  platform: "github" | "linkedin" | string; // 나중에 늘릴 수 있으니 일단 string 허용
-  icon: string;
-  link: string;
-};
+import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import type { ContactItem, SocialItem } from '@/shared/types/home';
+import EmailLink from './EmailLink.client';
 
 export default async function ContactBar() {
-  const t = await getTranslations("home.contactBar");
+  const t = await getTranslations('home.contactBar');
 
-  const contactItems = t.raw("contactItems") as ContactItem[];
-  const socialItems = t.raw("socialItems") as SocialItem[];
+  const contactItems = t.raw('contactItems') as ContactItem[];
+  const socialItems = t.raw('socialItems') as SocialItem[];
 
   return (
     <section aria-labelledby="contact-bar-title">
@@ -41,19 +29,19 @@ export default async function ContactBar() {
               lg:gap-11
             "
             >
-              {contactItems.map((value: any, index: number) => {
-                if (value.type === "email") {
-                  return <EmailLink key={index} value={value} />;
+              {contactItems.map((value) => {
+                if (value.type === 'email') {
+                  return <EmailLink key={value.label} value={value} />;
                 }
 
                 return (
                   <a
-                    key={index}
+                    key={value.label}
                     href={value.link}
-                    target={value.type === "location" ? "_blank" : undefined}
+                    target={value.type === 'location' ? '_blank' : undefined}
                     rel={
-                      value.type === "location"
-                        ? "noopener noreferrer"
+                      value.type === 'location'
+                        ? 'noopener noreferrer'
                         : undefined
                     }
                     className="flex items-center gap-2 lg:gap-4 text-sm md:text-base hover:opacity-50 transition-opacity duration-200"
@@ -75,9 +63,9 @@ export default async function ContactBar() {
 
             {/* Social Items */}
             <div className="flex items-center justify-center md:justify-end gap-4 md:gap-2.5">
-              {socialItems.map((value: any, index: number) => (
+              {socialItems.map((value) => (
                 <a
-                  key={index}
+                  key={`${value.platform}-${value.link}`}
                   href={value.link}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -1,5 +1,11 @@
+export const projectInsightKeys = ['motive', 'problemSolving', 'learned'] as const;
+
+export type ProjectInsightKey = (typeof projectInsightKeys)[number];
+export type ProjectKind = 'personal' | 'team';
+
 export type ProjectData = {
   name: string;
+  kind: ProjectKind;
   title: string;
   period: string;
   type: string;
@@ -11,5 +17,5 @@ export type ProjectData = {
     demo?: string;
   };
   note?: string;
-  insight?: Record<string, string>;
+  insight?: Partial<Record<ProjectInsightKey, string>>;
 };

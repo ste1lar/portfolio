@@ -1,13 +1,10 @@
 import { getRequestConfig } from 'next-intl/server';
-
-const SUPPORTED_LOCALES = ['ko', 'ja'] as const;
-type Locale = (typeof SUPPORTED_LOCALES)[number];
+import { defaultLocale, getMessages, isLocale } from '@/i18n/config';
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  const raw = (await requestLocale) ?? 'ko';
-  const locale: Locale = SUPPORTED_LOCALES.includes(raw as Locale) ? (raw as Locale) : 'ko';
-
-  const messages = (await import(`../../messages/${locale}.json`)).default;
+  const raw = (await requestLocale) ?? defaultLocale;
+  const locale = isLocale(raw) ? raw : defaultLocale;
+  const messages = getMessages(locale);
 
   return {
     locale,

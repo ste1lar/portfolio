@@ -219,6 +219,7 @@
 
     "sabi-shop": {
       "name": "sabi-shop",
+      "kind": "personal",
       "title": "SABI SHOP - WABI SABI Minimal Coffee Store",
       "period": "2025.10 ~ 2025.11",
       "type": "Personal Project / Fullstack",
@@ -237,6 +238,7 @@
     },
     "portfolio": {
       "name": "portfolio",
+      "kind": "personal",
       "title": "Portfolio",
       "period": "2024.07 ~ 2025.11",
       "type": "Personal Project / Fullstack",
@@ -255,6 +257,7 @@
     },
     "food-runner": {
       "name": "food-runner",
+      "kind": "team",
       "title": "Food Runner",
       "period": "2025.03 ~ 2025.06",
       "type": "Team Project (5 members) / Team Leader • Web Frontend",
@@ -274,6 +277,7 @@
     },
     "weather-diary": {
       "name": "weather-diary",
+      "kind": "team",
       "title": "마음의 날씨 - 감정 기록 플랫폼",
       "period": "2024.09 ~ 2024.12",
       "type": "Team Project (4 members) / Web Frontend",
@@ -292,6 +296,7 @@
     },
     "seremeety": {
       "name": "seremeety",
+      "kind": "personal",
       "title": "Seremeety - 만남의 세레나데",
       "period": "2024.07 ~ 2024.08",
       "type": "Personal Project / Fullstack",
@@ -310,6 +315,7 @@
     },
     "sweetii": {
       "name": "sweetii",
+      "kind": "team",
       "title": "Sweetii - 달콤한 만남",
       "period": "2024.01 ~ 2024.06",
       "type": "Team Project (3 members) / Web Frontend",

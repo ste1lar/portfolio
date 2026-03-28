@@ -83,12 +83,6 @@ body {
   .container {
     @apply w-full max-w-[80rem] mx-auto mt-0 mb-0 py-0 sm:px-7 px-5;
   }
-  .label {
-    @apply text-secondary text-sm font-normal;
-  }
-  .input {
-    @apply w-full border-b border-gray focus:border-primary focus:outline-none py-2;
-  }
   .neon-highlight {
     background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
     background-size: 400% 100%;

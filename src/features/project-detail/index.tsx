@@ -1,6 +1,8 @@
 import { Calendar, User, Users } from 'lucide-react';
 import LinkPill from '@/shared/ui/LinkPill';
-import { ProjectData } from '@/shared/types/projects';
+import SectionHeader from '@/shared/ui/SectionHeader';
+import TimelineDot from '@/shared/ui/TimelineDot';
+import { ProjectData, projectInsightKeys } from '@/shared/types/projects';
 
 type Props = {
   sectionTitle: string;
@@ -8,11 +10,14 @@ type Props = {
   project: ProjectData;
 };
 
-const formatKey = (str: string) =>
-  str.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b\w/g, (c) => c.toUpperCase());
+const insightLabels = {
+  motive: 'Motive',
+  problemSolving: 'Problem Solving',
+  learned: 'Learned',
+} as const;
 
 export default function ProjectDetail({ sectionTitle, sectionIndex, project }: Props) {
-  const { title, period, type, description, tech, links = {}, note, insight = {} } = project;
+  const { title, period, kind, type, description, tech, links = {}, note, insight = {} } = project;
 
   const techList = (tech ?? '')
     .split(',')
@@ -24,16 +29,20 @@ export default function ProjectDetail({ sectionTitle, sectionIndex, project }: P
     .map((v) => v.trim())
     .filter(Boolean);
 
-  const TypeIcon = type.startsWith('Personal') ? User : Users;
+  const TypeIcon = kind === 'personal' ? User : Users;
+  const insightEntries = projectInsightKeys.flatMap((key) =>
+    insight[key] ? [{ key, value: insight[key] as string }] : [],
+  );
 
   return (
     <main className="min-h-dvh pt-28 md:pt-32">
       <section aria-labelledby="project-detail-title">
         <div className="container">
-          <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-            <h2 id="project-detail-title">{sectionTitle}</h2>
-            <p className="text-xl text-black">{sectionIndex}</p>
-          </div>
+          <SectionHeader
+            id="project-detail-title"
+            title={sectionTitle}
+            index={sectionIndex}
+          />
 
           <div className="flex flex-col lg:flex-row gap-10 xl:gap-16 mb-12 md:mb-16">
             <div className="flex-1 space-y-5">
@@ -97,15 +106,13 @@ export default function ProjectDetail({ sectionTitle, sectionIndex, project }: P
             </aside>
           </div>
 
-          {Object.keys(insight).length > 0 && (
+          {insightEntries.length > 0 && (
             <div className="space-y-10 md:space-y-12 border-t border-mistGray py-12 md:py-16">
-              {Object.entries(insight).map(([key, value], index) => (
-                <section key={index} className="space-y-3">
+              {insightEntries.map(({ key, value }) => (
+                <section key={key} className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="no-print w-3.5 h-3.5 rounded-full border border-black bg-white flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
-                    </div>
-                    <h5>{formatKey(key)}</h5>
+                    <TimelineDot filled />
+                    <h5>{insightLabels[key]}</h5>
                   </div>
                   <p className="whitespace-pre-line leading-7 md:leading-8">{value}</p>
                 </section>
